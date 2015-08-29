@@ -515,8 +515,12 @@ ul {
     list-style: none;
 }
 .aboutUsPic {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     margin-top: 25px;
     margin-bottom: 15px;
+}
+
+.aboutMe .description {
+    font-size: 18px;
 }
