@@ -34,7 +34,7 @@ module.exports = function(app, passport) {
     var authCode = req.body.code;
     console.log(authCode);
 
-    requestify.post('https://api.linkedin.com/uas/oauth2/accessToken?grant_type=authorization_code&code='+authCode+'&redirect_uri=http%3A%2F%2Fmenther-50750.onmodulus.net%2Fnerds&client_id=75o7oq8qxk1g5s&client_secret=0O2lAqsjUtFKfscP', {
+    requestify.post('https://api.linkedin.com/uas/oauth2/accessToken?grant_type=authorization_code&code='+authCode+'&redirect_uri=http%3A%2F%2Fmenther-50753.onmodulus.net%2Fnerds&client_id=75o7oq8qxk1g5s&client_secret=0O2lAqsjUtFKfscP', {
     }, {
       'headers' : {
         'content-type': 'application/x-www-form-urlencoded'
