@@ -1,11 +1,21 @@
 var User = require('./models/user');
 var Company = require('./models/company');
 
-module.exports = function(app) {
+module.exports = function(app, passport) {
 
   // server routes ===========================================================
   // handle things like api calls
   // authentication routes
+
+  app.get('/auth/linkedin', function(req, res){
+    passport.use(new LinkedInStrategy({
+      consumerKey: '75o7oq8qxk1g5s',
+      consumerSecret: '0O2lAqsjUtFKfscP', 
+      callbackURL: 'http:localhost:8080/nerds'
+    }, function(token, tokenSecret, profile, done){
+      console.log(profile);
+    }));
+  });
 
   // sample api route
   app.get('/api/users', function(req, res){
@@ -15,8 +25,10 @@ module.exports = function(app) {
       if (err)
         res.send(err);
 
+
+      res.json(users); // returns all users in JSON
+
     });
-    res.json(users); // returns all users in JSON
   });
 
   app.post('/api/users', function(req, res){
