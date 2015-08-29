@@ -5,7 +5,7 @@ Connecting employees to potential mentors within their company.
 
 This app is intended to aid in the process of finding relevant mentorship for those seeking assistance.
 
-Users can sign in through LinkedIn and pre-populate their profiles with the corresponding fields from their LinkedIn accounts. In particular, we pull the user's current company to place them in the proper community. Additionally, we ask the user to provide information such as gender, and have the user specify whether they'd like to volunteer as a mentor, sign up as a mentee, or both.
+Users can sign in through LinkedIn and pre-populate their profiles with the corresponding fields from their LinkedIn accounts. In particular, we pull the user's current company to place them in the proper community. Users also have to option to provide additional information such as gender. We then ask the user to specify whether they'd like to volunteer as a mentor, sign up as a mentee, or both.
 
 As a mentor, users will ultimately be able to specify their level of availability, skillset, and other notes they'd like to include.
 
