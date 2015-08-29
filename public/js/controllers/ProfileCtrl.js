@@ -1,6 +1,8 @@
 angular.module('ProfileCtrl', []).controller('ProfileController', function($scope, $http, $auth) {
-	$http.get('/api/users').success(function (data) {
-		$scope.users = data;
+	$http.get('/api/profile').success(function (data) {
+		$scope.users = [];
+		console.log('got profile', data);
+		$scope.profile = data;
 	});
 
 	$scope.isAuthenticated = function() {
@@ -18,6 +20,17 @@ angular.module('ProfileCtrl', []).controller('ProfileController', function($scop
 	$scope.updateProfile = function() {
 		console.log('updating!!')
 		$scope.users = [];
+	}
+
+	$scope.createUser = function () {
+		if($scope.profile.strong_skills.split) {
+			$scope.profile.strong_skills = $scope.profile.strong_skills.split(',');			
+		}
+		$http.post('api/users', $scope.profile).success(function(data){
+			alert('Updated!');
+			$scope.profile = data.newUser;
+			$scope.users = data;
+		});
 	}
 
 });
