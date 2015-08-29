@@ -13,6 +13,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			controller: 'UserController'
 		})
 
+		.when('/admin', {
+			templateUrl: 'views/admin.html',
+			controller: 'UserController'
+		})
+
 		.when('/companies', {
 			templateUrl: 'views/company.html',
 			controller: 'CompanyController'

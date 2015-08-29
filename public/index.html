@@ -14,9 +14,9 @@
 	<script src="libs/angular/angular.min.js"></script>
 	<script src="libs/angular-route/angular-route.min.js"></script>
 	<script src="//cdn.jsdelivr.net/satellizer/0.12.3/satellizer.min.js"></script>
+<!--   // <script src="pie-chart.min.js"></script> -->
 	<!-- ANGULAR CUSTOM -->
 	<script src="js/controllers/LoginCtrl.js"></script>
-	<script src="js/controllers/MainCtrl.js"></script>
 	<script src="js/controllers/UserCtrl.js"></script>
 	<script src="js/services/UserService.js"></script>
 	<script src="js/controllers/CompanyCtrl.js"></script>
@@ -36,6 +36,7 @@
                 <div class="navbar-collapse collapse ">
                   <ul id="menu-top" class="nav navbar-nav navbar-right">
                     <li><a href="/" ng-click="updateProfile()">Update Your Profile</a></li>
+                    <li><a href="/admin" ng-click="adminProfile()">Admin</a></li>
                     <li><a href="/#">Logout</a></li>
 
                   </ul>
