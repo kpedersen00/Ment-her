@@ -23,6 +23,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			controller: 'ProfileController'
 		})
 
+		.when('/about-us', {
+			templateUrl: 'views/aboutUs.html',
+			controller: 'AboutUsController'
+		})
+
 		.when('/training', {
 			templateUrl: 'views/training.html',
 			controller: 'TrainingController'

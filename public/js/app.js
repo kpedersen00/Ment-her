@@ -1,7 +1,7 @@
-angular.module('sampleApp', ['satellizer', 'ngRoute', 'appRoutes', 'LoginCtrl', 'UserCtrl', 'UserService', 'CompanyCtrl','CompanyService', 'TrainingCtrl', 'ProfileCtrl']).config(function($authProvider){
+angular.module('sampleApp', ['satellizer', 'ngRoute', 'appRoutes', 'LoginCtrl', 'UserCtrl', 'UserService', 'CompanyCtrl','CompanyService', 'TrainingCtrl', 'ProfileCtrl', 'AboutUsCtrl']).config(function($authProvider){
     $authProvider.linkedin({
       clientId: '75o7oq8qxk1g5s',
-      redirectUri: 'http://localhost:8080/nerds',
+      redirectUri: 'http://menther-50750.onmodulus.net/nerds',
       scope: ['r_emailaddress', 'r_basicprofile'],
     });
 });
