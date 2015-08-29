@@ -1,8 +1,8 @@
-angular.module('NerdCtrl', []).controller('NerdController', function($scope, $http) {
+angular.module('UserCtrl', []).controller('UserController', function($scope, $http) {
 	$http.get('/api/users').success(function (data) {
 		$scope.users = data;
 	});
-	
+
 	$scope.tagline = 'Nothing beats a pocket protector!';
 
 	$scope.createUser = function () {
