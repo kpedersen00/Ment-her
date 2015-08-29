@@ -11,16 +11,14 @@
                 <h4 class="page-head-line">Members of Your Community</h4>
                 <form class="form-inline" id="searchForm">
                 <input type="text" ng-model="filter.params" class="form-control input text-center" id="searchBox"/>
-    			<button type="submit" ng-click="filterUsers()" class="btn btn-default">Filter</button>
+    			<button type="submit" ng-click="filterUsers(filter)" class="btn btn-default">Filter by skills</button>
     			<button type="submit" ng-click="getAllUsers()" class="btn btn-default">Clear Filters </button>
-    			    			<button type="submit" ng-click="deleteUsers()" class="btn btn-default">Delete </button>
-
 	    		</form>
               </div>
             </div>
 	            <div class="row">
 	    			<div ng-repeat="user in users">
-			              <div class="col-md-6">
+			              <div ng-hide="!user.linkedin_id" class="col-md-6">
 			                <div class="alert alert-success">
 			                  <div class="media">
 			                    <a class="media-left" href="#">
@@ -31,13 +29,16 @@
 			                      <span class="glyphicon glyphicon-user female" aria-hidden="true" ng-show="isFemale(user.gender)"></span>
   			                      <span class="glyphicon glyphicon-user male" aria-hidden="true" ng-show="isMale(user.gender)"></span>
 			                      <h4>{{user.job_title}}</h4> <h4 ng-hide="!user.company">@ {{user.company}}</h4>
-				                  <h4>{{user.description}}<h4>
-				                  	Id: {{user._id}}
+				                  <h4 class="userDescription" ng-hide="!user.description">"{{user.description}}"<h4>
 				                  <h5 ng-hide="!user.email">
 				                  	  <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>{{user.email}}
 				                  </h5>
 				                  <p ng-hide="!user.strong_skills.length">I can advise:</p>
 				                  <ul ng-repeat="skill in user.strong_skills">
+					                  <li><span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>{{skill}}</li>
+  				                  </ul>
+				                  <p ng-hide="!user.weak_skills.length">I want to work on:</p>
+				                  <ul ng-repeat="skill in user.weak_skills">
 					                  <li><span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>{{skill}}</li>
   				                  </ul>
 
@@ -48,7 +49,6 @@
 			            </div>
 
 	    			</div>
-			    	<a ng-click="logout()" href="">Logout</a>
 	    		</div>
 	    	</div>
     		<div ng-switch-default>
@@ -109,13 +109,13 @@
 							</div>
 		                    <input type="hidden" class="form-control input-lg text-center" name="linkedin_id" value="{{profile.linkedin_id}}" />
 		                </div>
+						  <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 
 		                <!-- createToDo() WILL CREATE NEW TODOS -->
-		                <button type="submit" class="btn btn-primary btn-lg" ng-click="createUser()">Add</button>
+		                <button type="submit" class="btn btn-primary btn-lg" ng-click="createUser()">Update</button>
 		            </form>
 		        </div>
 		    </div>
-	    	<a ng-click="logout()" href="">Logout</a>
     		</div>
     	</div>
 	    </div>

@@ -20,11 +20,13 @@
 	<script src="js/controllers/TrainingCtrl.js"></script>
 	<script src="js/controllers/MainCtrl.js"></script>
 	<script src="js/controllers/UserCtrl.js"></script>
+	<script src="js/controllers/ProfileCtrl.js"></script>
 	<script src="js/services/UserService.js"></script>
 	<script src="js/controllers/CompanyCtrl.js"></script>
 	<script src="js/services/CompanyService.js"></script>
 
 	<script src="libs/jquery/dist/jquery.min.js"></script>
+	<script src="libs/angular-bootstrap/ui-bootstrap.min.js"></script>
 	<script src="libs/jquery.jcarousel.min.js"></script>
 
 	<script src="js/appRoutes.js"></script>
@@ -47,7 +49,6 @@
 	                <li ng-show="isAuthenticated()"><a href="/">Your Coworkers</a></li>
                     <li ng-show="isAuthenticated()"><a href="/profile">Profile</a></li>
                     <li ng-show="isAuthenticated()"><a href="/#" ng-click="logout()">Logout</a></li>
-
                   </ul>
                 </div>
               </div>

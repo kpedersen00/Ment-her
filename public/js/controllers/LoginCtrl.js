@@ -7,6 +7,7 @@ angular.module('LoginCtrl', []).controller('LoginController', function($scope, $
       $auth.authenticate(provider).then(function(res){
       	if(res.data.user) {
       		$scope.profile = res.data.user;
+      		userId = res.data.user.linkedin_id;
       		console.log('setting user', res.data.user);
       	}
       });
@@ -35,8 +36,8 @@ angular.module('LoginCtrl', []).controller('LoginController', function($scope, $
 		return $scope.users && $scope.users.length > 0;
 	}
 
-	$scope.filterUsers = function() {
-		var params = $scope.filter && $scope.filter.params;
+	$scope.filterUsers = function(filter) {
+		var params = filter.params;
 		console.log('params', params);
 		$http({url:'api/filter', method: 'GET', params: {'filter': params}}).success(function(data){
 			$scope.users = data;
@@ -46,6 +47,7 @@ angular.module('LoginCtrl', []).controller('LoginController', function($scope, $
 	$scope.getAllUsers = function() {
 		$http.get('api/users').success(function(data){
 			$scope.users = data;
+			$('#searchBox').val('');
 		});
 	}
 
