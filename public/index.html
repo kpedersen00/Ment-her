@@ -13,17 +13,24 @@
 	<!-- JS -->
 	<script src="libs/angular/angular.min.js"></script>
 	<script src="libs/angular-route/angular-route.min.js"></script>
+	<script src="http://code.angularjs.org/1.2.9/angular-animate.min.js"></script>
 	<script src="//cdn.jsdelivr.net/satellizer/0.12.3/satellizer.min.js"></script>
 	<!-- ANGULAR CUSTOM -->
 	<script src="js/controllers/LoginCtrl.js"></script>
+	<script src="js/controllers/TrainingCtrl.js"></script>
 	<script src="js/controllers/MainCtrl.js"></script>
 	<script src="js/controllers/UserCtrl.js"></script>
 	<script src="js/services/UserService.js"></script>
 	<script src="js/controllers/CompanyCtrl.js"></script>
 	<script src="js/services/CompanyService.js"></script>
 
+	<script src="libs/jquery/dist/jquery.min.js"></script>
+	<script src="libs/jquery.jcarousel.min.js"></script>
+
 	<script src="js/appRoutes.js"></script>
+	<script src="js/appDirectives.js"></script>
 	<script src="js/app.js"></script>
+
 </head>
 <body ng-app="sampleApp" ng-controller="UserController">
 <div class="container">
@@ -33,10 +40,13 @@
           <div class="container">
             <div class="row">
               <div class="col-md-12">
+              	<a class="navbar-brand" id="logo" href="#"><span style="height:40px;">MentHer</span><span class="glyphicon glyphicon-link female" aria-hidden="true"></span></a>
                 <div class="navbar-collapse collapse ">
                   <ul id="menu-top" class="nav navbar-nav navbar-right">
-                    <li><a href="/" ng-click="updateProfile()">Update Your Profile</a></li>
-                    <li><a href="/#">Logout</a></li>
+                    <li ng-show="isAuthenticated()"><a href="/training">Training</a></li>
+	                <li ng-show="isAuthenticated()"><a href="/">Your Coworkers</a></li>
+                    <li ng-show="isAuthenticated()"><a href="/profile">Profile</a></li>
+                    <li ng-show="isAuthenticated()"><a href="/#" ng-click="logout()">Logout</a></li>
 
                   </ul>
                 </div>
@@ -50,5 +60,77 @@
 	<div ng-view></div>
 
 </div>
+<script>
+(function ($) {
+
+/**
+* @function
+* @property {object} jQuery plugin which runs handler function once specified element is inserted into the DOM
+* @param {function} handler A function to execute at the time when the element is inserted
+* @param {bool} shouldRunHandlerOnce Optional: if true, handler is unbound after its first invocation
+* @example $(selector).waitUntilExists(function);
+*/
+
+$.fn.waitUntilExists    = function (handler, shouldRunHandlerOnce, isChild) {
+    var found       = 'found';
+    var $this       = $(this.selector);
+    var $elements   = $this.not(function () { return $(this).data(found); }).each(handler).data(found, true);
+
+    if (!isChild)
+    {
+        (window.waitUntilExists_Intervals = window.waitUntilExists_Intervals || {})[this.selector] =
+            window.setInterval(function () { $this.waitUntilExists(handler, shouldRunHandlerOnce, true); }, 500)
+        ;
+    }
+    else if (shouldRunHandlerOnce && $elements.length)
+    {
+        window.clearInterval(window.waitUntilExists_Intervals[this.selector]);
+    }
+
+    return $this;
+}
+
+}(jQuery));
+
+$(document).ready(function(){
+    var a = function() {
+        $('.jcarousel').jcarousel();
+        $('.jcarousel-control-prev')
+            .on('jcarouselcontrol:active', function() {
+                $(this).removeClass('inactive');
+            })
+            .on('jcarouselcontrol:inactive', function() {
+                $(this).addClass('inactive');
+            })
+            .jcarouselControl({
+                target: '-=1'
+            });
+
+        $('.jcarousel-control-next')
+            .on('jcarouselcontrol:active', function() {
+                $(this).removeClass('inactive');
+            })
+            .on('jcarouselcontrol:inactive', function() {
+                $(this).addClass('inactive');
+            })
+            .jcarouselControl({
+                target: '+=1'
+            });
+
+        $('.jcarousel-pagination')
+            .on('jcarouselpagination:active', 'a', function() {
+                $(this).addClass('active');
+            })
+            .on('jcarouselpagination:inactive', 'a', function() {
+                $(this).removeClass('active');
+            })
+            .jcarouselPagination();
+    };
+    $('.jcarousel').waitUntilExists(function(){
+	    a();
+    });
+});
+</script>
+
 </body>
 </html>
