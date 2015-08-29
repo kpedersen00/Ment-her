@@ -431,8 +431,14 @@ ul {
 
 .jcarousel-control-prev:hover,
 .jcarousel-control-next:hover {
-    color: #fcfcfc;
+    color: #fcfcfc !important;
 }
+
+.jcarousel-control-prev:focus,
+.jcarousel-control-next:focus {
+    color: #fcfcfc !important;
+}
+
 
 .jcarousel-control-prev:hover span,
 .jcarousel-control-next:hover span {
