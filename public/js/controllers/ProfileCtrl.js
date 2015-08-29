@@ -1,4 +1,4 @@
-angular.module('UserCtrl', []).controller('UserController', function($scope, $http, $auth) {
+angular.module('ProfileCtrl', []).controller('ProfileController', function($scope, $http, $auth) {
 	$http.get('/api/users').success(function (data) {
 		$scope.users = data;
 	});
@@ -19,11 +19,5 @@ angular.module('UserCtrl', []).controller('UserController', function($scope, $ht
 		console.log('updating!!')
 		$scope.users = [];
 	}
-
-    $scope.logout = function() {
-    	$auth.logout();
-    	delete $window.localStorage.currentUser;
-    	$scope.users = [];
-    }
 
 });
