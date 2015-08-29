@@ -1,4 +1,9 @@
-<div class="jumbotron text-center">
+<div class="jumbotron text-center" ng-app="myapp">
+<!-- <div class="jumbotron text-center" ng-app="myapp" ng-controller="AdminCtrl"> -->
   <h1>Your Company's Activity</h1>
+
+  <div ng-controller="AdminCtrl">
+    <canvas barchart responsive=true options="options" data="chart"></canvas>
+  </div>
 
 </div>

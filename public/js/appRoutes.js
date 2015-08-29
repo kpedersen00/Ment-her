@@ -15,8 +15,9 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 
 		.when('/admin', {
 			templateUrl: 'views/admin.html',
-			controller: 'UserController'
+			controller: 'AdminCtrl'
 		})
+
 
 		.when('/companies', {
 			templateUrl: 'views/company.html',
@@ -31,3 +32,5 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 	$locationProvider.html5Mode(true);
 
 }]);
+
+console.log("hitting approute");

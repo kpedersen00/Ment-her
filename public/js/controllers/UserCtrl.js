@@ -3,15 +3,14 @@ angular.module('UserCtrl', []).controller('UserController', function($scope, $ht
 		$scope.users = data;
 	});
 
-<<<<<<< HEAD
+
 	// $http.get('/api/admin').success(function (data){
 	// 	$scope.users = data;
 	// });
-=======
+
 	$scope.isAuthenticated = function() {
 	  return $auth.isAuthenticated();
 	};
->>>>>>> eabbe8b27990966384854d910247ea987b9ccbea
 
 	$scope.createUser = function () {
 		$http.post('api/users', $scope.formData).success(function(data){
@@ -26,18 +25,16 @@ angular.module('UserCtrl', []).controller('UserController', function($scope, $ht
 		$scope.users = [];
 	}
 
-<<<<<<< HEAD
 	$scope.adminProfile = function() {
 
 		console.log('admin profile is happening!')
 		// $scope.users = [];
 	}
-=======
+
     $scope.logout = function() {
     	$auth.logout();
     	delete $window.localStorage.currentUser;
     	$scope.users = [];
     }
->>>>>>> eabbe8b27990966384854d910247ea987b9ccbea
 
 });

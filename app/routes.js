@@ -1,6 +1,6 @@
 var User = require('./models/user');
 var Company = require('./models/company');
-var requestify = require('requestify'); 
+var requestify = require('requestify');
 var cheerio = require('cheerio');
 
 module.exports = function(app, passport) {
@@ -116,6 +116,12 @@ module.exports = function(app, passport) {
         console.log('err delete', err)
       }
     });
+  });
+
+  app.get('/api/admin', function(req, res){
+
+    console.log("Admin route");
+
   });
 
   app.get('/api/companies', function(req, res){
