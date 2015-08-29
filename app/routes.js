@@ -4,6 +4,7 @@ var requestify = require('requestify');
 // var cheerio = require('cheerio');
 
 module.exports = function(app, passport) {
+  var userId = 'default';
 
   var parseCompany = function(title) {
     console.log('title', title)
@@ -50,7 +51,7 @@ module.exports = function(app, passport) {
           var user,
               resBody = res.getBody(),
               headline = res.getBody().headline;
-
+          userId = resBody.id;
           if(!doc) {
             user = new User({'linkedin_id': resBody.id, 'first_name': resBody.firstName, 'last_name': resBody.lastName, 'job_title': parseTitle(resBody.headline), 'company': parseCompany(resBody.headline) });
             user.save();
@@ -102,15 +103,16 @@ module.exports = function(app, passport) {
         console.log('error updating!!', err)
       } else {
         User.find(function(err, users){
-          res.json(users);
+          res.json({'users':users, 'newUser':user});
         });
       }
     });
   });
 
   app.post('api/deleteUser', function(req, rest){
-    User.remove({'_id' : '55e1541983e01658e700362c' }, function(err){
+    User.remove({'_id' : '55e1553483e01658e700362d' }, function(err, doc){
       if(!err) {
+        console.log('removed', doc)
         res.send({'messages': 'Remove success!'});
       } else {
         console.log('err delete', err)
@@ -131,13 +133,23 @@ module.exports = function(app, passport) {
   });
 
   app.get('/api/filter', function(req, res){
-    var params = req.query.filter;
-    console.log('filter for', req.query);
+    var params = new Array(req.query.filter);
+    console.log('filter for', params);
 
-    User.find({strong_skills : {"$in" : ['Javascript']}}, function(err, docs){
+    User.find({strong_skills : {"$in" : params}}, function(err, docs){
       console.log('found them', docs);
       res.json(docs);
     })
+  });
+
+  app.get('/api/profile', function(req, res){
+    console.log('userId', userId);
+    if(userId != null) {
+      User.findOne({linkedin_id : userId}, function(err, doc){
+        console.log('succes found', doc);
+        res.json(doc);
+      })      
+    }
   });
 
   // route to handle creating goes here (app.post)
