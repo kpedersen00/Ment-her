@@ -5,6 +5,15 @@ var cheerio = require('cheerio');
 
 module.exports = function(app, passport) {
 
+  var parseCompany = function(title) {
+    console.log('title', title)
+    return title.split('at')[1];
+  };
+
+  var parseTitle = function(title) {
+    return title.split('at')[0];
+  }
+
   // server routes ===========================================================
   // handle things like api calls
   // authentication routes
@@ -39,10 +48,11 @@ module.exports = function(app, passport) {
       }).then(function(res){
         User.findOne({'linkedin_id': res.getBody().id}, function(err, doc){
           var user,
-              resBody = res.getBody();
+              resBody = res.getBody(),
+              headline = res.getBody().headline;
 
           if(!doc) {
-            user = new User({'linkedin_id': resBody.id, 'first_name': resBody.firstName, 'last_name': resBody.lastName, 'job_title': resBody.headline });
+            user = new User({'linkedin_id': resBody.id, 'first_name': resBody.firstName, 'last_name': resBody.lastName, 'job_title': parseTitle(resBody.headline), 'company': parseCompany(resBody.headline) });
             user.save();
           } else {
             user = doc;
@@ -79,15 +89,33 @@ module.exports = function(app, passport) {
 
   app.post('/api/users', function(req, res){
     // Use mongoose to get all users in the database
+    var userId = req.body.linkedin_id;
+    var query = {'linkedin_id': userId};
     var user = new User(req.body);
+    var upstartData = user.toObject();
+    delete upstartData._id;
+    delete upstartData.__v;
 
-    user.save(function(err){
+    console.log('ID', upstartData);
+    User.findOneAndUpdate(query, upstartData, {upsert:true}, function(err, doc){
       if(err) {
-        res.send(err)
+        console.log('error updating!!', err)
+      } else {
+        User.find(function(err, users){
+          res.json(users);
+        });
       }
-      res.send({'message': 'Success!!!', 'user': user})
     });
+  });
 
+  app.post('api/deleteUser', function(req, rest){
+    User.remove({'_id' : '55e1541983e01658e700362c' }, function(err){
+      if(!err) {
+        res.send({'messages': 'Remove success!'});
+      } else {
+        console.log('err delete', err)
+      }
+    });
   });
 
   app.get('/api/companies', function(req, res){
@@ -100,6 +128,16 @@ module.exports = function(app, passport) {
 
       res.json(companies); // returns all companies in JSON
     });
+  });
+
+  app.get('/api/filter', function(req, res){
+    var params = req.query.filter;
+    console.log('filter for', req.query);
+
+    User.find({strong_skills : {"$in" : ['Javascript']}}, function(err, docs){
+      console.log('found them', docs);
+      res.json(docs);
+    })
   });
 
   // route to handle creating goes here (app.post)

@@ -9,9 +9,15 @@ angular.module('UserCtrl', []).controller('UserController', function($scope, $ht
 
 	$scope.createUser = function () {
 		$http.post('api/users', $scope.formData).success(function(data){
-			$scope.formData = {};
+			$scope.profile = {};
 			$scope.users = data;
 			console.log(data);
-		})
+		});
 	}
+
+	$scope.updateProfile = function() {
+		console.log('updating!!')
+		$scope.users = [];
+	}
+
 });

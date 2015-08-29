@@ -1,15 +1,126 @@
 <div class="jumbotron text-center">
 	<h1>Foster Mentorship</h1>
-  <h2>Connect With The People In Your Company</h3>
+  <h2 class="subtitle">Connect With The People In Your Company</h3>
 	<div ng-switch on="isAuthenticated()">
 	    <div ng-switch-when="true">
-	    	{{profile.first_name}}
+	    	<div ng-switch on="hasUsers()">
+	    		<div ng-switch-when="true">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <h4 class="page-head-line">Members of Your Community</h4>
+                <form class="form-inline" id="searchForm">
+                <input type="text" ng-model="filter.params" class="form-control input text-center" id="searchBox"/>
+    			<button type="submit" ng-click="filterUsers()" class="btn btn-default">Filter</button>
+    			<button type="submit" ng-click="getAllUsers()" class="btn btn-default">Clear Filters </button>
+    			    			<button type="submit" ng-click="deleteUsers()" class="btn btn-default">Delete </button>
+
+	    		</form>
+              </div>
+            </div>
+	            <div class="row">
+	    			<div ng-repeat="user in users">
+			              <div class="col-md-6">
+			                <div class="alert alert-success">
+			                  <div class="media">
+			                    <a class="media-left" href="#">
+			                      <img src="assets/img/ghost.png" alt="" class="img-rounded" />
+			                    </a>
+			                    <div class="media-body">
+			                      <h3 class="media-heading" id="userName">{{user.first_name}} {{user.last_name}}</h3> 
+			                      <span class="glyphicon glyphicon-user female" aria-hidden="true" ng-show="isFemale(user.gender)"></span>
+  			                      <span class="glyphicon glyphicon-user male" aria-hidden="true" ng-show="isMale(user.gender)"></span>
+			                      <h4>{{user.job_title}}</h4> <h4 ng-hide="!user.company">@ {{user.company}}</h4>
+				                  <h4>{{user.description}}<h4>
+				                  	Id: {{user._id}}
+				                  <h5 ng-hide="!user.email">
+				                  	  <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>{{user.email}}
+				                  </h5>
+				                  <p ng-hide="!user.strong_skills.length">I can advise:</p>
+				                  <ul ng-repeat="skill in user.strong_skills">
+					                  <li><span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>{{skill}}</li>
+  				                  </ul>
+
+			                    </div>
+			                  </div>
+			                </div>
+			              </div>
+			            </div>
+
+	    			</div>
+			    	<a ng-click="logout()" href="">Logout</a>
+	    		</div>
+	    	</div>
+    		<div ng-switch-default>
+		    <div id="users-form" class="row">
+		        <div class="col-sm-8 col-sm-offset-2 text-center">
+		            <form>
+		                <div class="form-group">
+		                    <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+					        <div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">First Name</span>
+			                    <input type="text" class="form-control input-lg text-center" ng-model="profile.first_name" id="firstName">
+							</div>
+					        <div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">Last Name</span>
+			                    <input type="text" class="form-control input-lg text-center" ng-model="profile.last_name">
+							</div>
+					        <div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">Job Title</span>
+			                    <input type="text" class="form-control input-lg text-center" ng-model="profile.job_title">
+							</div>
+					        <div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">Company</span>
+			                    <input type="text" class="form-control input-lg text-center" ng-model="profile.company">
+							</div>
+					        <div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">Email</span>
+			                    <input type="text" class="form-control input-lg text-center" ng-model="profile.email">
+							</div>
+					        <div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">Gender</span>
+								<select class="form-control" ng-model="profile.gender">
+								  <option value="FEMALE">Female</option>
+								  <option value="MALE">Male</option>
+								  <option value="UNKNOWN">Prefer not to say</option>
+								</select>
+							</div>
+					        <div class="input-group">
+								<span class="input-group-addon" id="basic-addon1">Description</span>
+			                    <textarea rows="3" class="form-control input-lg text-center" ng-model="profile.description"></textarea>
+							</div>
+							<div class="checkbox text-left">
+							    <label>
+							    	<input type="checkbox" class="input text-left" ng-model="profile.mentor"> Mentor
+							    </label>
+							</div>
+					        <div class="input-group" ng-hide="!profile.mentor" class="ng-hide">
+								<span class="input-group-addon" id="basic-addon1">I can advise these skills</span>
+			                    <input type="text" class="form-control input-lg text-center" ng-model="profile.strong_skills">
+							</div>
+							<div class="checkbox text-left">
+							    <label>
+							    	<input type="checkbox" class="input text-left" ng-model="profile.mentee"> Mentee
+							    </label>
+							</div>
+					        <div class="input-group" ng-hide="!profile.mentee" class="ng-hide">
+								<span class="input-group-addon" id="basic-addon1">I want to improve these skills</span>
+			                    <input type="text" class="form-control input-lg text-center" ng-model="profile.weak_skills">
+							</div>
+		                    <input type="hidden" class="form-control input-lg text-center" name="linkedin_id" value="{{profile.linkedin_id}}" />
+		                </div>
+
+		                <!-- createToDo() WILL CREATE NEW TODOS -->
+		                <button type="submit" class="btn btn-primary btn-lg" ng-click="createUser()">Add</button>
+		            </form>
+		        </div>
+		    </div>
 	    	<a ng-click="logout()" href="">Logout</a>
-	        <!-- code to render a large video block-->
+    		</div>
+    	</div>
 	    </div>
 	    <div ng-switch-default>
-    	    <input type="image" src="../imgs/signin_with_linkedin-buttons/Non-Retina/Sign-in-Large---Default.png" />
-	    	<button ng-click="authenticate('linkedin')">Sign in with LinkedIn</button>
+    	    <input ng-click="authenticate('linkedin')" type="image" src="../imgs/signin_with_linkedin-buttons/Non-Retina/Sign-in-Large---Default.png" />
 	        <!-- code to render the regular video block -->
 	    </div>
 	</div>

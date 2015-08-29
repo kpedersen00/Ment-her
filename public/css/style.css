@@ -312,3 +312,41 @@ footer {
 .btn-google {
     background-color: #c32f10;
 }
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.alert-success {
+    background-color: #FAFAFA;
+    border-color: #888;
+    color: #888;
+}
+
+.alert-success h3 {
+    color: #444;
+}
+
+.media-body {
+    text-align: left;
+}
+
+.subtitle {
+    margin-bottom: 40px;
+}
+
+ul {
+    list-style: none;
+}
+
+#searchForm {
+    margin-bottom: 40px;
+}
+
+.glyphicon-user.female:before {
+    color: #FAC4CB;
+}
+
+#userName {
+    display: inline-block;
+}
