@@ -1,3 +1,5 @@
+angular.module('myModule', ['chart.js']);
+
 angular.module('AdminCtrl', []).controller('AdminController', function($scope, $http) {
 
   $scope.onboard = [{
