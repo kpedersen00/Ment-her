@@ -25,6 +25,7 @@ angular.module('UserCtrl', []).controller('UserController', function($scope, $ht
 	}
 
 	$scope.adminProfile = function() {
+
 		console.log('admin profile is happening!')
 		// $scope.users = [];
 	}
