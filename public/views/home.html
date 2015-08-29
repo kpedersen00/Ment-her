@@ -1,5 +1,14 @@
 <div class="jumbotron text-center">
 	<h1>Home Page 4 Life</h1>
-
-	<p>{{ tagline }}</p>
+	<div ng-switch on="isAuthenticated()">
+	    <div ng-switch-when="true">
+	    	{{profile.first_name}}
+	    	<a ng-click="logout()" href="">Logout</a>
+	        <!-- code to render a large video block-->
+	    </div>
+	    <div ng-switch-default>
+	    	<button ng-click="authenticate('linkedin')">Sign in with LinkedIn</button>
+	        <!-- code to render the regular video block -->
+	    </div>
+	</div>
 </div>
