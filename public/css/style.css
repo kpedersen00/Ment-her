@@ -501,3 +501,29 @@ ul {
     margin-bottom: 50px;
     margin-top: 50px;
 }
+
+
+/*==============================================
+    ADMIN PAGE  STYLES
+ =============================================*/
+
+.graph img{
+    padding: 20px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+
+.graph-tile {
+
+    display: block;
+    padding: 20px;
+    width: 33%;
+    float: left;
+}
+
+
+
+
+
+
