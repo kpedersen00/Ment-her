@@ -23,6 +23,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			controller: 'TrainingController'
 		});
 
+		.when('/admin', {
+			templateUrl: 'views/admin.html',
+			controller: 'AdminController'
+		});
+
 	$locationProvider.html5Mode(true);
 
 }]);
