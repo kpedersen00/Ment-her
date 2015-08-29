@@ -431,7 +431,12 @@ ul {
 
 .jcarousel-control-prev:hover,
 .jcarousel-control-next:hover {
-    color: #fcfcfc;
+    color: #fcfcfc !important;
+}
+
+.jcarousel-control-prev:focus,
+.jcarousel-control-next:focus {
+    color: #fcfcfc !important;
 }
 
 .jcarousel-control-prev:hover span,
@@ -456,19 +461,19 @@ ul {
 .jcarousel-pagination a {
     text-decoration: none;
     display: inline-block;
-    
+
     font-size: 11px;
     line-height: 14px;
     min-width: 14px;
-    
+
     background: #fff;
     color: #4E443C;
     border-radius: 14px;
     padding: 3px;
     text-align: center;
-    
+
     margin-right: 2px;
-    
+
     opacity: .75;
 }
 
