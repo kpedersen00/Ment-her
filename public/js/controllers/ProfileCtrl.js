@@ -1,4 +1,4 @@
-angular.module('ProfileCtrl', ['ui.bootstrap']).controller('ProfileController', function($scope, $http, $auth) {
+angular.module('ProfileCtrl', []).controller('ProfileController', function($scope, $http, $auth) {
 	$http.get('/api/profile').success(function (data) {
 		$scope.users = [];
 		console.log('got profile', data);
@@ -28,7 +28,7 @@ angular.module('ProfileCtrl', ['ui.bootstrap']).controller('ProfileController', 
 		}
 		$http.post('api/users', $scope.profile).success(function(data){
 			alert('Updated!');
-			$scope.profile = {};
+			$scope.profile = data.newUser;
 			$scope.users = data;
 		});
 	}

@@ -1,4 +1,7 @@
 angular.module('LoginCtrl', []).controller('LoginController', function($scope, $auth, $window, $http) {
+	$http.get('api/users').success(function(data){
+		$scope.users = data;
+	})
 	$scope.isAuthenticated = function() {
 	  return $auth.isAuthenticated();
 	};

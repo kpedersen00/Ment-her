@@ -103,7 +103,7 @@ module.exports = function(app, passport) {
         console.log('error updating!!', err)
       } else {
         User.find(function(err, users){
-          res.json(users);
+          res.json({'users':users, 'newUser':user});
         });
       }
     });
