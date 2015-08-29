@@ -7,6 +7,6 @@
 	"body-parser" : "~1.4.2",
 	"method-override" : "~2.0.2",
    "passport": "^0.2.1",
-   "passport-linkedIn": "^1.0.0"
+   // "passport-linkedIn": "^1.0.0"
   }
 }
