@@ -1,7 +1,7 @@
 var User = require('./models/user');
 var Company = require('./models/company');
-var requestify = require('requestify'); 
-var cheerio = require('cheerio');
+var requestify = require('requestify');
+// var cheerio = require('cheerio');
 
 module.exports = function(app, passport) {
   var userId = 'default';
