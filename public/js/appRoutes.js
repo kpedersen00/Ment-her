@@ -21,7 +21,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		.when('/training', {
 			templateUrl: 'views/training.html',
 			controller: 'TrainingController'
-		});
+		})
 
 		.when('/admin', {
 			templateUrl: 'views/admin.html',

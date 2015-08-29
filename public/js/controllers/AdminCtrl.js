@@ -1,4 +1,4 @@
-angular.module('TrainingCtrl', []).controller('TrainingController', function($scope, $http) {
+angular.module('AdminCtrl', []).controller('AdminController', function($scope, $http) {
 
   $scope.onboard = [{
     header: 'Step 1',
