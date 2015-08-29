@@ -347,6 +347,11 @@ ul {
     color: #FAC4CB;
 }
 
+.glyphicon-user.male:before {
+    color: #477DF9;
+}
+
+
 #userName {
     display: inline-block;
 }
@@ -500,4 +505,8 @@ ul {
 #trainingTitle {
     margin-bottom: 50px;
     margin-top: 50px;
+}
+
+.userDescription {
+    margin-bottom: 25px;
 }
