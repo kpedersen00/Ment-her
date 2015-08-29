@@ -21,8 +21,8 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse applica
 app.use(bodyParser.urlencoded({ extended: true })); // parse application/x-www-form-urlencoded
 
 app.use(express.static(__dirname + '/public')); // set the static files location /public/img will be /img for users
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 // routes ==================================================
 require('./app/routes')(app); // pass our application into our routes
