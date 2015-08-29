@@ -312,3 +312,19 @@ footer {
 .btn-google {
     background-color: #c32f10;
 }
+
+
+
+/*KATY'S ADDITIONS*/
+.search-results {
+    /*background-color: blue;*/
+    float: left;
+}
+
+.search-results-title {
+    float: left;
+}
+
+.search-results-list {
+    float: right;
+}

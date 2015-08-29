@@ -1,4 +1,4 @@
-angular.module('NerdCtrl', []).controller('NerdController', function($scope, $http) {
+angular.module('UserCtrl', []).controller('UserController', function($scope, $http) {
 	$scope.$on('someEvent', function(event, args) {
 		console.log('args', args);
 	});
