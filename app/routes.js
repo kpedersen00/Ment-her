@@ -9,15 +9,27 @@ module.exports = function(app) {
 
   // sample api route
   app.get('/api/users', function(req, res){
-    // Use mongoose to get all users in the database
     User.find(function(err, users){
       // if there is an error retrieving, send the error.
       // nothing after res.send(err) will execute
       if (err)
         res.send(err);
 
-      res.json(users); // returns all users in JSON
     });
+    res.json(users); // returns all users in JSON
+  });
+
+  app.post('/api/users', function(req, res){
+    // Use mongoose to get all users in the database
+    var user = new User(req.body);
+
+    user.save(function(err){
+      if(err) {
+        res.send(err)
+      }
+      res.send({'message': 'Success!!!', 'user': user})
+    });
+
   });
 
   app.get('/api/companies', function(req, res){
