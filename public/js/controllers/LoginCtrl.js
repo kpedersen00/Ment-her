@@ -16,7 +16,7 @@ angular.module('LoginCtrl', []).controller('LoginController', function($scope, $
     	$auth.logout();
     	delete $window.localStorage.currentUser;
     	$scope.users = [];
-    }
+    };
 
 	$scope.createUser = function () {
 		console.log('form', $scope.profile);
