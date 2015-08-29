@@ -510,3 +510,13 @@ ul {
 .userDescription {
     margin-bottom: 25px;
 }
+
+.aboutMe {
+    list-style: none;
+}
+.aboutUsPic {
+    width: 100px;
+    height: 100px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
